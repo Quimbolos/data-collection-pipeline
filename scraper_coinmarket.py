@@ -60,23 +60,49 @@ class Scraper():
 
         return self.driver 
 
-    def insert_postcode(self):
+    def get_links(self):
         '''
-        Enter the postcode in the Main URL (Ikea) 
+        Returns a list with all the links in the current page
+        Parameters
+        ----------
+        driver: webdriver.Chrome
+            The driver that contains information about the current page
         
+        Returns
+        -------
+        link_list: list
+            A list with all the links in the page
         '''
-        try:
-            WebDriverWait(self.driver, self.delay).until(EC.presence_of_element_located((By.XPATH, '//*[@class="sc-a4a6801b-0 glxMF"]')))
-            enter_postcode_button = self.driver.find_element(by=By.XPATH, value='//*[@class="sc-a4a6801b-0 glxMF"]')
-            print("Postcode Button Ready!")
-            enter_postcode_button.click()
-            time.sleep(1)
-        except TimeoutException:
-            print("Loading took too much time!")
 
-        self.driver.find_element(by=By.XPATH, value='//*[@id="hnf-txt-postalcodepicker-postcode"]').send_keys('SW1V 2NE').send_keys(Keys.ENTER)
+        prop_container = self.driver.find_element(by=By.XPATH, value='//*[@id="__next"]/div/div[1]/div[2]/div/div[1]/div[4]/table')
+        prop_container2 = prop_container.find_element(by=By.XPATH, value='./tbody')
+        prop_list = prop_container2.find_elements(by=By.XPATH, value='./tr')
+        print(prop_list)
+        
+        link_list = []
 
-        return self.driver
+        for crypto in prop_list:
+            a_tag = crypto.find_element(by=By.TAG_NAME, value='a')
+            link = a_tag.get_attribute('href')
+            link_list.append(link)
+            print(link)
+
+        return link_list
+
+    # big_list = []
+    # driver = load_and_accept_cookies()
+
+    # for i in range(5): # The first 5 pages only
+    #     big_list.extend(get_links(driver)) # Call the function we just created and extend the big list with the returned list
+    #     ## TODO: Click the next button. Don't forget to use sleeps, so the website doesn't suspect
+    #     pass # This pass should be removed once the code is complete
+
+
+    # for link in big_list:
+    #     ## TODO: Visit all the links, and extract the data. Don't forget to use sleeps, so the website doesn't suspect
+    #     pass # This pass should be removed once the code is complete
+
+# driver.quit() # Close the browser when you finish
          
 
 
@@ -84,7 +110,7 @@ class Scraper():
     def run(self):
 
         self.load_and_accept_manual_and_cookies_promts()
-        #self.scroll_down()
+        self.get_links()
         #self.insert_postcode()
 
 
@@ -95,3 +121,4 @@ game = Scraper(URL)
 
 game.run()
 # %%
+
