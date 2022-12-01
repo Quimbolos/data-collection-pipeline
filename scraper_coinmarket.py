@@ -8,18 +8,15 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.keys import Keys
 import time
 
-
 class Scraper():
 
     def __init__(self, url):
-
         self.main_url = url
         self.driver = webdriver.Chrome() 
         self.delay = 20
 
 
     def load_and_accept_manual_and_cookies_promts(self):
-
         '''
         Open Main URL (CoinMarket) and accept the manual and cookies prompt
         
@@ -30,16 +27,15 @@ class Scraper():
 
             # Buttons
 
-            Button1 = WebDriverWait(self.driver, self.delay).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div[4]/button')))
-            Button1.click()
+            manual_button1 = WebDriverWait(self.driver, self.delay).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div[4]/button')))
+            manual_button1.click()
            
-            Button2 = WebDriverWait(self.driver, self.delay).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div[4]/button')))
-            Button2.click()
+            manual_button2 = WebDriverWait(self.driver, self.delay).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div[4]/button')))
+            manual_button2.click()
 
-            Button3 = WebDriverWait(self.driver, self.delay).until(EC.presence_of_element_located((By.XPATH, '//*[@id="cmc-cookie-policy-banner"]/div[2]')))
-            Button3.click()
+            cookies_button = WebDriverWait(self.driver, self.delay).until(EC.presence_of_element_located((By.XPATH, '//*[@id="cmc-cookie-policy-banner"]/div[2]')))
+            cookies_button.click()
             
-
             time.sleep(1)
 
         except TimeoutException:
@@ -49,7 +45,6 @@ class Scraper():
 
 
     def scroll_down(self):
-
         '''
         Scroll down Main URL (Ikea) 
         
@@ -59,6 +54,7 @@ class Scraper():
         print("Scroll down executed!")
 
         return self.driver 
+
 
     def get_links(self):
         '''
@@ -77,7 +73,6 @@ class Scraper():
         prop_container = self.driver.find_element(by=By.XPATH, value='//*[@id="__next"]/div/div[1]/div[2]/div/div[1]/div[4]/table')
         prop_container2 = prop_container.find_element(by=By.XPATH, value='./tbody')
         prop_list = prop_container2.find_elements(by=By.XPATH, value='./tr')
-        print(prop_list)
         
         link_list = []
 
@@ -85,9 +80,24 @@ class Scraper():
             a_tag = crypto.find_element(by=By.TAG_NAME, value='a')
             link = a_tag.get_attribute('href')
             link_list.append(link)
-            print(link)
 
-        return link_list
+        return print(link_list)
+
+
+    def run_scraper(self):
+
+        self.load_and_accept_manual_and_cookies_promts()
+        self.get_links()
+        #self.scroll_down()
+
+
+
+if __name__ == '__main__':
+
+    url = 'https://coinmarketcap.com/'
+    game = Scraper(url)
+    game.run_scraper()
+
 
     # big_list = []
     # driver = load_and_accept_cookies()
@@ -105,20 +115,5 @@ class Scraper():
 # driver.quit() # Close the browser when you finish
          
 
-
-
-    def run(self):
-
-        self.load_and_accept_manual_and_cookies_promts()
-        self.get_links()
-        #self.insert_postcode()
-
-
-
-URL = 'https://coinmarketcap.com/'
-
-game = Scraper(URL)
-
-game.run()
 # %%
 
