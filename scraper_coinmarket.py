@@ -7,6 +7,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.keys import Keys
 import time
+import re
+
 
 class Scraper():
 
@@ -21,11 +23,12 @@ class Scraper():
         Open Main URL (CoinMarket) and accept the manual and cookies prompt
         
         '''
+
         URL = self.main_url
         self.driver.get(URL)
         try:
 
-            # Buttons
+            # Click Buttons from Prompts
 
             manual_button1 = WebDriverWait(self.driver, self.delay).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div[4]/button')))
             manual_button1.click()
@@ -46,7 +49,7 @@ class Scraper():
 
     def scroll_down(self):
         '''
-        Scroll down Main URL (Ikea) 
+        Scroll down Main URL (CoinMarket) 
         
         '''
 
@@ -70,6 +73,8 @@ class Scraper():
             A list with all the links in the page
         '''
 
+        self.driver = self.load_and_accept_manual_and_cookies_promts()
+
         prop_container = self.driver.find_element(by=By.XPATH, value='//*[@id="__next"]/div/div[1]/div[2]/div/div[1]/div[4]/table')
         prop_container2 = prop_container.find_element(by=By.XPATH, value='./tbody')
         prop_list = prop_container2.find_elements(by=By.XPATH, value='./tr')
@@ -81,39 +86,138 @@ class Scraper():
             link = a_tag.get_attribute('href')
             link_list.append(link)
 
-        return print(link_list)
+        return link_list
+
+
+    def get_data(self):
+        '''
+        Returns a dictionary with all the data of interest from the links from get_links()
+        Parameters
+        ----------
+        driver: webdriver.Chrome
+            The driver that contains information about the current page
+        
+        Returns
+        -------
+        data: dict
+            A dictionary with all the data of interest from the links
+        '''
+ 
+        # Extract all the links
+        link_list = self.get_links()
+
+        # Variables to extract:
+        name = []
+        price = []
+        price_change_24_hours = []
+        low_price_24_hours = []
+        high_price_24_hours = []
+        trading_volume_24_hours = []
+        volume_market_cap = []
+        market_dominance = []
+        market_rank = []
+
+        # Iterate through the list, and for each iteration, visit the corresponding URL
+        for i in range(len(link_list)): # The first 5 pages only
+            # Load url
+            self.driver.get(link_list[i])
+
+            # click prompt button if it appears
+            # if i == 0:
+            #     prompt_button1 = WebDriverWait(self.driver, self.delay).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div/div/div/div/button[2]')))
+            #     prompt_button1.click()
+
+            # Wait Until Container with data appears
+            WebDriverWait(self.driver, self.delay).until(EC.presence_of_element_located((By.XPATH, '//div[@class="sc-aef7b723-0 jfPVkR container"]')))
+        
+            # Extract the information of the link
+            name_container = self.driver.find_element(by=By.XPATH, value='//div[@class="sc-aef7b723-0 jfPVkR container"]')
+            name.append(name_container.find_element(by=By.XPATH, value='//h2/span').text)
+
+            price_statistics_container = self.driver.find_element(by=By.XPATH, value='//div[@class="sc-aef7b723-0 sc-7bd0ce10-0 dkDCAO"]')
+            tbody_tag = price_statistics_container.find_element(by=By.XPATH, value='//tbody')
+            tr_tag = tbody_tag.find_elements(by=By.XPATH, value='.//td')
+
+            price.append((tr_tag[0].get_attribute('innerHTML'))[1:10])
+            price_change_24_hours.append(((tr_tag[1].find_element(by=By.XPATH, value='.//span/span').get_attribute('innerHTML'))[0]+(tr_tag[1].find_element(by=By.XPATH, value='.//span/span').get_attribute('innerHTML'))[10:16]))
+            low_price_24_hours.append(re.sub('[^a-zA-Z0-9\n\.]', '',(tr_tag[2].find_element(by=By.XPATH, value='.//div').get_attribute('innerHTML'))[1:10]))
+            high_price_24_hours.append((tr_tag[2].find_element(by=By.XPATH, value='.//div[2]').get_attribute('innerHTML'))[1:10])
+            trading_volume_24_hours.append((tr_tag[3].find_element(by=By.XPATH, value='.//span').get_attribute('innerHTML'))[1:-1])
+            volume_market_cap.append(tr_tag[4].get_attribute('innerHTML'))
+            market_dominance.append(re.sub('[^a-zA-Z0-9\n\.]', '',(tr_tag[5].find_element(by=By.XPATH, value='.//span').get_attribute('innerHTML'))[0:5]))
+            market_rank.append((tr_tag[6].get_attribute('innerHTML'))[1:4])
+            
+            # Sleep
+            time.sleep(1)
+
+
+        data_dict = {
+
+            'Name' : name,
+            'Price ($)' : price,
+            'Price Change 24h ($)' : price_change_24_hours,
+            'Lowest Price 24h ($)' : low_price_24_hours,
+            'Highest Price 24h ($)' : high_price_24_hours,
+            'Trading Volume 24h ($)' : trading_volume_24_hours,
+            'Volume / Market Cap' : volume_market_cap,
+            'Market Dominance' : market_dominance,
+            'Market Rank' : market_rank
+
+        }
+
+        self.driver.quit() # Close the browser when you finish
+
+        return data_dict
+
+
+    def get_images(self):
+
+        # Extract all the links
+        link_list = self.get_links()
+
+        # Allocate space for the images
+        images = []
+
+        # Iterate through the link list, and for each iteration, visit the corresponding URL
+        for i in range(len(link_list)): # The first 5 pages only
+            # Load url
+            self.driver.get(link_list[i])
+
+            # Wait Until Container with image appears
+            WebDriverWait(self.driver, self.delay).until(EC.presence_of_element_located((By.XPATH, '//div[@class="sc-aef7b723-0 jPJwrb nameHeader"]')))
+            image_container  = self.driver.find_element(by=By.XPATH, value='//div[@class="sc-aef7b723-0 jPJwrb nameHeader"]')
+            images.append(image_container.find_element(by=By.XPATH, value='.//img').get_attribute('src'))
+
+            # Sleep
+            time.sleep(1)
+            
+        images_dict = {
+
+            'Images' : images
+
+        }
+
+        self.driver.quit() # Close the browser when you finish
+
+        return print(images_dict)
+
 
 
     def run_scraper(self):
 
-        self.load_and_accept_manual_and_cookies_promts()
-        self.get_links()
-        #self.scroll_down()
+        # self.load_and_accept_manual_and_cookies_promts()
+        # self.get_links()
+        self.get_data()
+        self.get_images()
+        # self.scroll_down()
 
+    
 
 
 if __name__ == '__main__':
-
     url = 'https://coinmarketcap.com/'
     game = Scraper(url)
     game.run_scraper()
 
-
-    # big_list = []
-    # driver = load_and_accept_cookies()
-
-    # for i in range(5): # The first 5 pages only
-    #     big_list.extend(get_links(driver)) # Call the function we just created and extend the big list with the returned list
-    #     ## TODO: Click the next button. Don't forget to use sleeps, so the website doesn't suspect
-    #     pass # This pass should be removed once the code is complete
-
-
-    # for link in big_list:
-    #     ## TODO: Visit all the links, and extract the data. Don't forget to use sleeps, so the website doesn't suspect
-    #     pass # This pass should be removed once the code is complete
-
-# driver.quit() # Close the browser when you finish
          
-
 # %%
-

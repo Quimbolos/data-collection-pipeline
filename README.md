@@ -81,7 +81,7 @@ class Scraper():
 
     def scroll_down(self):
         '''
-        Scroll down Main URL (Ikea) 
+        Scroll down Main URL (CoinMarket) 
         
         '''
 
