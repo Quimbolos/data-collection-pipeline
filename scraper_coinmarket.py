@@ -8,6 +8,7 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.keys import Keys
 import time
 import re
+import datetime
 
 
 class Scraper():
@@ -116,6 +117,7 @@ class Scraper():
         volume_market_cap = []
         market_dominance = []
         market_rank = []
+        timestamp = []
 
         # Iterate through the list, and for each iteration, visit the corresponding URL
         for i in range(len(link_list)): # The first 5 pages only
@@ -146,6 +148,7 @@ class Scraper():
             volume_market_cap.append(tr_tag[4].get_attribute('innerHTML'))
             market_dominance.append(re.sub('[^a-zA-Z0-9\n\.]', '',(tr_tag[5].find_element(by=By.XPATH, value='.//span').get_attribute('innerHTML'))[0:5]))
             market_rank.append((tr_tag[6].get_attribute('innerHTML'))[1:4])
+            timestamp.append(datetime.datetime.fromtimestamp(time.time()).strftime('%c'))
             
             # Sleep
             time.sleep(1)
@@ -161,11 +164,10 @@ class Scraper():
             'Trading Volume 24h ($)' : trading_volume_24_hours,
             'Volume / Market Cap' : volume_market_cap,
             'Market Dominance' : market_dominance,
-            'Market Rank' : market_rank
+            'Market Rank' : market_rank,
+            'TimeStamp' : timestamp
 
         }
-
-        self.driver.quit() # Close the browser when you finish
 
         return data_dict
 
@@ -197,9 +199,16 @@ class Scraper():
 
         }
 
-        self.driver.quit() # Close the browser when you finish
+        return images_dict
 
-        return print(images_dict)
+    def merge_dict(self):
+
+        data = self.get_data()
+        images = self.get_images()
+
+        dictionary = dict(images.items() + data.items())
+
+        return dictionary
 
 
 
@@ -207,10 +216,13 @@ class Scraper():
 
         # self.load_and_accept_manual_and_cookies_promts()
         # self.get_links()
-        self.get_data()
-        self.get_images()
+        # self.get_data()
+        # self.get_images()
+        self.merge_dict()
         # self.scroll_down()
 
+
+        self.driver.quit() # Close the browser when you finish
     
 
 
