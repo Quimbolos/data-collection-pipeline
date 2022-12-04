@@ -9,6 +9,8 @@ from selenium.webdriver.common.keys import Keys
 import time
 import re
 import datetime
+import os
+import json
 
 
 class Scraper():
@@ -90,7 +92,7 @@ class Scraper():
         return link_list
 
 
-    def get_data(self):
+    def get_data(self, links):
         '''
         Returns a dictionary with all the data of interest from the links from get_links()
         Parameters
@@ -105,7 +107,7 @@ class Scraper():
         '''
  
         # Extract all the links
-        link_list = self.get_links()
+        link_list = links
 
         # Variables to extract:
         name = []
@@ -120,7 +122,7 @@ class Scraper():
         timestamp = []
 
         # Iterate through the list, and for each iteration, visit the corresponding URL
-        for i in range(len(link_list)): # The first 5 pages only
+        for i in range(5): # The first 5 pages only
             # Load url
             self.driver.get(link_list[i])
 
@@ -172,16 +174,16 @@ class Scraper():
         return data_dict
 
 
-    def get_images(self):
+    def get_images(self, links):
 
         # Extract all the links
-        link_list = self.get_links()
+        link_list = links
 
         # Allocate space for the images
         images = []
 
         # Iterate through the link list, and for each iteration, visit the corresponding URL
-        for i in range(len(link_list)): # The first 5 pages only
+        for i in range(5): # The first 5 pages only
             # Load url
             self.driver.get(link_list[i])
 
@@ -201,12 +203,11 @@ class Scraper():
 
         return images_dict
 
-    def merge_dict(self):
+    def merge_dict(self, data, images):
 
-        data = self.get_data()
-        images = self.get_images()
-
-        dictionary = dict(images.items() + data.items())
+        dictionary = {}
+        dictionary.update(images)
+        dictionary.update(data)
 
         return dictionary
 
@@ -214,15 +215,41 @@ class Scraper():
 
     def run_scraper(self):
 
-        # self.load_and_accept_manual_and_cookies_promts()
-        # self.get_links()
-        # self.get_data()
-        # self.get_images()
-        self.merge_dict()
+
+        # Get the links to scrape data from
+        link_list = self.get_links()
+
+        # Scrape the Price statistics for each cryprocurrency
+        data_dict = self.get_data(link_list)
+
+        # Scrape the Image/Logo for each cryprocurrency
+        images_dict = self.get_images(link_list)
+
+        # Merge both data and image dictionaries
+        dictionary = self.merge_dict(data_dict, images_dict)
+
+        # Create the raw_data folder
+        dictionary_dir = 'raw_data'
+        parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/"
+        path = os.path.join(parent_dir, dictionary_dir)
+        if os.path.exists(path) == False:
+            os.mkdir(path)
+
+        # Create the dictionary folder
+        dictionary_dir = 'dictionary'
+        parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/raw_data/"
+        path = os.path.join(parent_dir, dictionary_dir)
+        if os.path.exists(path) == False:
+            os.mkdir(path)
+
+        # Save the dictionary in the dictionary folder
+        with open(os.path.join(path, 'data.json'), 'w') as fp:
+            json.dump(dictionary, fp)
+
         # self.scroll_down()
 
-
-        self.driver.quit() # Close the browser when you finish
+        # Close the browser when you finish
+        self.driver.quit() 
     
 
 
@@ -232,4 +259,7 @@ if __name__ == '__main__':
     game.run_scraper()
 
          
+# %%
+
+
 # %%
