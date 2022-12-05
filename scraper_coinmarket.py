@@ -40,13 +40,10 @@ class Scraper():
         try:
 
             # Click Buttons from Prompts
-
             manual_button1 = WebDriverWait(self.driver, self.delay).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div[4]/button')))
             manual_button1.click()
-           
             manual_button2 = WebDriverWait(self.driver, self.delay).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div[4]/button')))
             manual_button2.click()
-
             cookies_button = WebDriverWait(self.driver, self.delay).until(EC.presence_of_element_located((By.XPATH, '//*[@id="cmc-cookie-policy-banner"]/div[2]')))
             cookies_button.click()
             
@@ -391,5 +388,4 @@ if __name__ == '__main__':
     dictionary = game.run_scraper()
 
 # %%
-type(webdriver.Chrome())
-# %%
+
