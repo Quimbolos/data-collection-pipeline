@@ -213,6 +213,26 @@ class Scraper():
         return dictionary
 
 
+    def create_raw_data_folder(self, dictionary):
+
+        dictionary_dir = 'raw_data'
+        parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/"
+        path = os.path.join(parent_dir, dictionary_dir)
+        if os.path.exists(path) == False:
+            os.mkdir(path)
+
+        # Create the dictionary folder within the raw_data folder
+        dictionary_dir = 'dictionary'
+        parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/raw_data/"
+        path = os.path.join(parent_dir, dictionary_dir)
+        if os.path.exists(path) == False:
+            os.mkdir(path)
+
+         # Save the dictionary in the dictionary folder
+        with open(os.path.join(path, 'data.json'), 'w') as fp:
+            json.dump(dictionary, fp)
+
+
     def create_crypto_folders(self, dictionary):
 
         # Create a folder for each crypto
@@ -226,8 +246,7 @@ class Scraper():
             if os.path.exists(path) == False:
                 os.mkdir(path)
             if os.path.exists(path_images) == False:
-                os.mkdir(path_images)
-            
+                os.mkdir(path_images)     
 
 
     def download_and_store_images(self, dictionary):
@@ -255,23 +274,10 @@ class Scraper():
         # Merge both data and image dictionaries
         dictionary = self.merge_dict(data_dict, images_dict)
 
-        # Create the raw_data folder
-        dictionary_dir = 'raw_data'
-        parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/"
-        path = os.path.join(parent_dir, dictionary_dir)
-        if os.path.exists(path) == False:
-            os.mkdir(path)
-
-        # Create the dictionary folder within the raw_data folder
-        dictionary_dir = 'dictionary'
-        parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/raw_data/"
-        path = os.path.join(parent_dir, dictionary_dir)
-        if os.path.exists(path) == False:
-            os.mkdir(path)
-
-         # Save the dictionary in the dictionary folder
-        with open(os.path.join(path, 'data.json'), 'w') as fp:
-            json.dump(dictionary, fp)
+        # Create the raw_data folder, 
+        # Create the dictionary folder within the raw_data folder 
+        # Save the dictionary in the dictionary folder
+        self.create_raw_data_folder(dictionary)
 
         # Create a folder for each cryptocurrency within the raw_data folder
         self.create_crypto_folders(dictionary)
@@ -286,7 +292,6 @@ class Scraper():
 
         return dictionary
     
-
 
 if __name__ == '__main__':
     url = 'https://coinmarketcap.com/'
