@@ -15,8 +15,8 @@ from selenium.webdriver.common.keys import Keys
 
 class Scraper():
 
-    def __init__(self, url):
-        self.main_url = url
+    def __init__(self):
+        self.main_url = 'https://coinmarketcap.com/'
         self.driver = webdriver.Chrome() 
         self.delay = 20
 
@@ -308,13 +308,14 @@ class Scraper():
             dictionary_dir = f'{name}'
             images_dir = 'images'
             parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/raw_data/"
-            images_parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/raw_data/"+f"{id}"+"/"
+            images_parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/raw_data/"+f"{name}"+"/"
             path = os.path.join(parent_dir, dictionary_dir)
             path_images = os.path.join(images_parent_dir,images_dir)
+            if os.path.exists(path_images) == False:
+                os.mkdir(path_images)  
             if os.path.exists(path) == False:
                 os.mkdir(path)
-            if os.path.exists(path_images) == False:
-                os.mkdir(path_images)     
+               
 
 
     def download_and_store_images(self, dictionary):
@@ -386,10 +387,9 @@ class Scraper():
     
 
 if __name__ == '__main__':
-    url = 'https://coinmarketcap.com/'
-    game = Scraper(url)
+    game = Scraper()
     dictionary = game.run_scraper()
 
 # %%
-
+type(webdriver.Chrome())
 # %%
