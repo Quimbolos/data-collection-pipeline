@@ -11,6 +11,7 @@ import re
 import datetime
 import os
 import json
+import requests
 
 
 class Scraper():
@@ -150,7 +151,7 @@ class Scraper():
             volume_market_cap.append(tr_tag[4].get_attribute('innerHTML'))
             market_dominance.append(re.sub('[^a-zA-Z0-9\n\.]', '',(tr_tag[5].find_element(by=By.XPATH, value='.//span').get_attribute('innerHTML'))[0:5]))
             market_rank.append((tr_tag[6].get_attribute('innerHTML'))[1:4])
-            timestamp.append(datetime.datetime.fromtimestamp(time.time()).strftime('%c'))
+            timestamp.append(datetime.datetime.fromtimestamp(time.time()).strftime("%m/%d/%Y %H:%M:%S"))
             
             # Sleep
             time.sleep(1)
@@ -194,14 +195,14 @@ class Scraper():
 
             # Sleep
             time.sleep(1)
-            
+
         images_dict = {
 
-            'Images' : images
-
+            'Images - src' : images
         }
 
         return images_dict
+
 
     def merge_dict(self, data, images):
 
@@ -211,6 +212,32 @@ class Scraper():
 
         return dictionary
 
+
+    def create_crypto_folders(self, dictionary):
+
+        # Create a folder for each crypto
+        for id in dictionary['Name']:
+            dictionary_dir = f'{id}'
+            images_dir = 'images'
+            parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/raw_data/"
+            images_parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/raw_data/"+f"{id}"+"/"
+            path = os.path.join(parent_dir, dictionary_dir)
+            path_images = os.path.join(images_parent_dir,images_dir)
+            if os.path.exists(path) == False:
+                os.mkdir(path)
+            if os.path.exists(path_images) == False:
+                os.mkdir(path_images)
+            
+
+
+    def download_and_store_images(self, dictionary):
+
+        for i in range(len(dictionary['Images - src'])):
+            img_data = requests.get(dictionary['Images - src'][i]).content
+            image_name = ((((dictionary['TimeStamp'][i]).replace("/","")).replace(" ","_")).replace(":",""))+'_'+ dictionary['Name'][i] +".jpg"
+            path_name = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/raw_data/"+dictionary['Name'][i]+"/"+"images"
+            with open(os.path.join(path_name, image_name), 'wb') as handler:
+                handler.write(img_data)
 
 
     def run_scraper(self):
@@ -235,31 +262,37 @@ class Scraper():
         if os.path.exists(path) == False:
             os.mkdir(path)
 
-        # Create the dictionary folder
+        # Create the dictionary folder within the raw_data folder
         dictionary_dir = 'dictionary'
         parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/raw_data/"
         path = os.path.join(parent_dir, dictionary_dir)
         if os.path.exists(path) == False:
             os.mkdir(path)
 
-        # Save the dictionary in the dictionary folder
+         # Save the dictionary in the dictionary folder
         with open(os.path.join(path, 'data.json'), 'w') as fp:
             json.dump(dictionary, fp)
+
+        # Create a folder for each cryptocurrency within the raw_data folder
+        self.create_crypto_folders(dictionary)
+
+        # Save the downloaded images in each crypto folder
+        self.download_and_store_images(dictionary)
 
         # self.scroll_down()
 
         # Close the browser when you finish
         self.driver.quit() 
+
+        return dictionary
     
 
 
 if __name__ == '__main__':
     url = 'https://coinmarketcap.com/'
     game = Scraper(url)
-    game.run_scraper()
+    dictionary = game.run_scraper()
 
-         
 # %%
-
 
 # %%
