@@ -1,18 +1,17 @@
 # %% 
 
+import datetime
+import json
+import os
+import re
+import requests
+import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.keys import Keys
-import time
-import re
-import datetime
-import os
-import json
-import requests
-
 
 class Scraper():
 
@@ -25,7 +24,15 @@ class Scraper():
     def load_and_accept_manual_and_cookies_promts(self):
         '''
         Open Main URL (CoinMarket) and accept the manual and cookies prompt
-        
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        self.driver: webdriver.Chrome
+            The driver after the manual and cookies prompts are accepted
         '''
 
         URL = self.main_url
@@ -54,7 +61,15 @@ class Scraper():
     def scroll_down(self):
         '''
         Scroll down Main URL (CoinMarket) 
-        
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        self.driver: webdriver.Chrome
+            The driver after the window has been scrolled down
         '''
 
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
@@ -65,16 +80,16 @@ class Scraper():
 
     def get_links(self):
         '''
-        Returns a list with all the links in the current page
+        Returns a list with all the links on the current page
+
         Parameters
         ----------
-        driver: webdriver.Chrome
-            The driver that contains information about the current page
+        None
         
         Returns
         -------
         link_list: list
-            A list with all the links in the page
+            A list with all the links of interest on the page
         '''
 
         self.driver = self.load_and_accept_manual_and_cookies_promts()
@@ -96,14 +111,15 @@ class Scraper():
     def get_data(self, links):
         '''
         Returns a dictionary with all the data of interest from the links from get_links()
+
         Parameters
         ----------
-        driver: webdriver.Chrome
-            The driver that contains information about the current page
+        links: links
+            The list with all the links of interest on the page
         
         Returns
         -------
-        data: dict
+        data_dict: dict
             A dictionary with all the data of interest from the links
         '''
  
@@ -176,6 +192,19 @@ class Scraper():
 
 
     def get_images(self, links):
+        '''
+        Returns a dictionary with all the images from the links from get_links()
+
+        Parameters
+        ----------
+        links: links
+            The list with all the links of interest in the page
+        
+        Returns
+        -------
+        images_dict: dict
+            A dictionary with all the images of interest from the links
+        '''
 
         # Extract all the links
         link_list = links
@@ -205,6 +234,21 @@ class Scraper():
 
 
     def merge_dict(self, data, images):
+        '''
+        Returns a dictionary with all the images from the links from get_links()
+
+        Parameters
+        ----------
+        data: dict
+            The dictionary containing all the price statistics data
+        images: dict
+            The dictionary containing all the images for each crypto
+
+        Returns
+        -------
+        dictionary: dict
+            A dictionary with all the images of interest and data from the links
+        '''
 
         dictionary = {}
         dictionary.update(images)
@@ -214,6 +258,19 @@ class Scraper():
 
 
     def create_raw_data_folder(self, dictionary):
+        '''
+        Creates the raw_data folder, creates the dictionary folder within the raw_data folder,
+        and saves the dictionary in the dictionary folder
+
+        Parameters
+        ----------
+        dictionary: dict
+            The dictionary containing all the price statistics data
+        
+        Returns
+        -------
+        None
+        '''
 
         dictionary_dir = 'raw_data'
         parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/"
@@ -234,10 +291,21 @@ class Scraper():
 
 
     def create_crypto_folders(self, dictionary):
+        '''
+        Creates a folder for each cryptocurrency within the raw_data folder
 
-        # Create a folder for each crypto
-        for id in dictionary['Name']:
-            dictionary_dir = f'{id}'
+        Parameters
+        ----------
+        dictionary: dict
+            The dictionary containing all the price statistics data
+        
+        Returns
+        -------
+        None
+        '''
+
+        for name in dictionary['Name']:
+            dictionary_dir = f'{name}'
             images_dir = 'images'
             parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/raw_data/"
             images_parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/raw_data/"+f"{id}"+"/"
@@ -250,6 +318,18 @@ class Scraper():
 
 
     def download_and_store_images(self, dictionary):
+        '''
+        Downloads and saves the images within each crypto/images folder
+
+        Parameters
+        ----------
+        dictionary: dict
+            The dictionary containing all the price statistics data
+        
+        Returns
+        -------
+        None
+        '''
 
         for i in range(len(dictionary['Images - src'])):
             img_data = requests.get(dictionary['Images - src'][i]).content
@@ -260,6 +340,18 @@ class Scraper():
 
 
     def run_scraper(self):
+        '''
+        Runs the Scraper methods
+
+        Parameters
+        ----------
+        None
+        
+        Returns
+        -------
+        dictionary: dict
+            The dictionary containing all the price statistics data
+        '''
 
 
         # Get the links to scrape data from
