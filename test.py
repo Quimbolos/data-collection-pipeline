@@ -78,29 +78,4 @@ if __name__ == '__main__':
     unittest.main()
 # %%
 
-scraper = scraper_coinmarket.Scraper()
-output = scraper.load_and_accept_manual_and_cookies_promts()
-str(type(output))
-# %%
-dict
-# %%
-a = {
-
-    'Key1' : 1
-}
-type(a)
-# %%
-len(a)
-# %%
-dict = {"Images - src": ["https://s2.coinmarketcap.com/static/img/coins/64x64/1.png", "https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png", "https://s2.coinmarketcap.com/static/img/coins/64x64/825.png", "https://s2.coinmarketcap.com/static/img/coins/64x64/1839.png", "https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png"], "Name": ["Bitcoin", "Ethereum", "Tether", "BNB", "USD Coin"], "Price ($)": ["17,084.21", "1,268.17", "1.00", "290.71", "0.9999"], "Price Change 24h ($)": ["+56.49", "+9.12", "-0.0000", "+0.9958", "-0.0001"], "Lowest Price 24h ($)": ["16994.70", "1258.73", "1.00", "289.32", "0.9997"], "Highest Price 24h ($)": ["17,378.15", "1,302.24", "1.00", "296.91", "1.00"], "Trading Volume 24h ($)": ["21,645,921,616.8", "6,087,192,200.2", "27,333,349,718.7", "685,536,571.2", "2,300,323,077.4"], "Volume / Market Cap": ["0.0659", "0.03922", "0.4173", "0.01474", "0.05307"], "Market Dominance": ["38.28", "18.09", "7.64", "5.42", "5.05"], "Market Rank": ["1", "2", "3", "4", "5"], "TimeStamp": ["12/05/2022 15:36:30", "12/05/2022 15:36:34", "12/05/2022 15:36:38", "12/05/2022 15:36:43", "12/05/2022 15:36:49"]}
-# %%
-dict
-# %%
-len(dict)
-len(dict['Name'])# %%
-
-# %%
-output = dict
-# %%
-len(output['Name'])
 # %%
