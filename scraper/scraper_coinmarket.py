@@ -70,7 +70,6 @@ class Scraper():
         '''
 
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        print("Scroll down executed!")
 
         return self.driver 
 
@@ -147,12 +146,11 @@ class Scraper():
 
             # Wait Until Container with data appears
             WebDriverWait(self.driver, self.delay).until(EC.presence_of_element_located((By.XPATH, '//div[@class="sc-aef7b723-0 jfPVkR container"]')))
-        
             # Extract the information of the link
             name_container = self.driver.find_element(by=By.XPATH, value='//div[@class="sc-aef7b723-0 jfPVkR container"]')
-            name.append(name_container.find_element(by=By.XPATH, value='//h2/span').text)
+            name.append(name_container.find_element(by=By.XPATH, value='//h2/span/span').text)
 
-            price_statistics_container = self.driver.find_element(by=By.XPATH, value='//div[@class="sc-aef7b723-0 sc-7bd0ce10-0 dkDCAO"]')
+            price_statistics_container = self.driver.find_element(by=By.XPATH, value='//div[@class="sc-aef7b723-0 RdAHw"]')
             tbody_tag = price_statistics_container.find_element(by=By.XPATH, value='//tbody')
             tr_tag = tbody_tag.find_elements(by=By.XPATH, value='.//td')
 
@@ -184,6 +182,7 @@ class Scraper():
             'TimeStamp' : timestamp
 
         }
+
 
         return data_dict
 
@@ -308,10 +307,11 @@ class Scraper():
             images_parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/raw_data/"+f"{name}"+"/"
             path = os.path.join(parent_dir, dictionary_dir)
             path_images = os.path.join(images_parent_dir,images_dir)
-            if os.path.exists(path_images) == False:
-                os.mkdir(path_images)  
             if os.path.exists(path) == False:
                 os.mkdir(path)
+            if os.path.exists(path_images) == False:
+                os.mkdir(path_images)  
+            
                
 
 
@@ -336,56 +336,6 @@ class Scraper():
             with open(os.path.join(path_name, image_name), 'wb') as handler:
                 handler.write(img_data)
 
-
-    def run_scraper(self):
-        '''
-        Runs the Scraper methods
-
-        Parameters
-        ----------
-        None
-        
-        Returns
-        -------
-        dictionary: dict
-            The dictionary containing all the price statistics data
-        '''
-
-
-        # Get the links to scrape data from
-        link_list = self.get_links()
-
-        # Scrape the Price statistics for each cryprocurrency
-        data_dict = self.get_data(link_list)
-
-        # Scrape the Image/Logo for each cryprocurrency
-        images_dict = self.get_images(link_list)
-
-        # Merge both data and image dictionaries
-        dictionary = self.merge_dict(data_dict, images_dict)
-
-        # Create the raw_data folder, 
-        # Create the dictionary folder within the raw_data folder 
-        # Save the dictionary in the dictionary folder
-        self.create_raw_data_folder(dictionary)
-
-        # Create a folder for each cryptocurrency within the raw_data folder
-        self.create_crypto_folders(dictionary)
-
-        # Save the downloaded images in each crypto folder
-        self.download_and_store_images(dictionary)
-
-        # self.scroll_down()
-
-        # Close the browser when you finish
-        self.driver.quit() 
-
-        return dictionary
-    
-
-if __name__ == '__main__':
-    game = Scraper()
-    dictionary = game.run_scraper()
 
 # %%
 
