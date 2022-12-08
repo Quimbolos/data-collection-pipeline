@@ -17,6 +17,7 @@ A website is chosen based on the data you are interested in to collect and build
 - Keeping Record of Government Decisions on Cryptocurrency.
 - Monitor Companies that Accept Payments in Cryptocurrency.
 
+
 ## Milestone 3: Prototype finding the individual page for each entry
 
 The aim is to find the links within the main page to the many pages containing the data you want to collect. A Scraper class is created containing all the methods used to scrape the data. Using Selenium, three methods, aside from the constructor, are defined:
@@ -132,8 +133,8 @@ if __name__ == '__main__':
     game = Scraper(url)
     game.run_scraper()
 
-
 ```
+
 
 ## Milestone 4: Retrieve data from details page
 
@@ -158,7 +159,10 @@ In task 4, all the images are to be downloaded and stored in their corresponding
  - The create_crypto_folders() method creates a folder within raw_data for each cryptocurrency. In each folder, an images folder is created to store the downloaded images
 
  - The download_and_store_images() method downloads the cryptocurrencies logo and stores them within its corresponding images folder. The naming convention for each image must be:
-        <date>_<time>_<order of image>.<image file extension> 
+
+```
+<date>_<time>_<order of image>.<image file extension>
+```
 
 For each TASK, changes in the code are committed and pushed to the GitHub repo.
 
@@ -464,3 +468,168 @@ if __name__ == '__main__':
 
 
 ```
+
+
+## Milestone 5: Documentation and testing
+
+Using docstrings and unittest documentation and testing are included in the project. 
+
+In Task 1, the current code is optimised and refactored. All the classes, methods and variables are to be named appropriately using conventions. The main goal is to have clean code and be as concise as possible.
+
+In Task 2, docstrings are included in all the functions used in the project. The format chosen follows the NumPy convention.
+
+```python
+
+def merge_dict(self, data, images):
+        '''
+        Returns a dictionary with all the images from the links from get_links()
+
+        Parameters
+        ----------
+        data: dict
+            The dictionary containing all the price statistics data
+        images: dict
+            The dictionary containing all the images for each crypto
+
+        Returns
+        -------
+        dictionary: dict
+            A dictionary with all the images of interest and data from the links
+        '''
+
+        dictionary = {}
+        dictionary.update(images)
+        dictionary.update(data)
+
+        return dictionary
+
+```
+
+In Task 3, using unittest, a ScraperTestCase() class is created to test all the methods from the Scraper() class. The implemented tests check trivial aspects of the methods, such as the output type, length, and overall, whether the output is what we expect. 
+
+```python
+
+import unittest
+import sys
+import os
+sys.path.append("..")
+from scraper.main import run_scraper
+
+# Run the Scraper
+scraper_outputs = run_scraper()
+get_links_ouput = scraper_outputs[0]
+get_data_ouput = scraper_outputs[1]
+get_images_ouput = scraper_outputs[2]
+merge_dict_ouput = scraper_outputs[3]
+
+class ScraperTestCase(unittest.TestCase):
+
+    # Test Basic methods of the Scraper
+
+    # def test_load_and_accept_manual_and_cookies_promts(self):
+    #     output = Scraper().load_and_accept_manual_and_cookies_promts()
+    #     self.assertEqual(str(type(output)),"<class 'selenium.webdriver.chrome.webdriver.WebDriver'>")
+
+    # def test_scroll_down(self):
+    #     output = Scraper().scroll_down()
+    #     self.assertEqual(str(type(output)),"<class 'selenium.webdriver.chrome.webdriver.WebDriver'>")
+
+    # Test the Essential methods of the Scraper
+
+    def test_get_links(self):
+        output = get_links_ouput
+        self.assertEqual(type(output),list)
+        self.assertEqual(len(output), 100)
+
+    def test_get_data(self):
+        output = get_data_ouput
+        self.assertEqual(type(output),dict)
+        self.assertEqual(len(output), 10)
+        self.assertEqual(len(output['Name']), 5)
+
+    def test_get_images(self):
+        output = get_images_ouput
+        self.assertEqual(type(output),dict)
+        self.assertEqual(len(output), 1)
+        self.assertEqual(len(output["Images - src"]), 5)
+
+    def test_merge_dict(self):
+        output = merge_dict_ouput
+        self.assertEqual(type(output),dict)
+        self.assertEqual(len(output), 11)
+        self.assertEqual(len(output["Images - src"]), 5)
+
+    def test_create_raw_data_folder(self):
+        root_path = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/"
+        raw_data_path = root_path+"raw_data"
+        dictionary_path = raw_data_path+"/dictionary"
+        data_json_path = dictionary_path+"/data.json"
+        self.assertTrue(os.path.exists(raw_data_path))
+        self.assertTrue(os.path.exists(dictionary_path))
+        self.assertTrue(os.path.exists(data_json_path))
+
+    def test_create_crypto_folders(self):
+        output_1 = merge_dict_ouput
+        root_path = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/raw_data/"
+        for i in range(len(output_1['Name'])):
+            crypto_path = root_path + output_1['Name'][i]
+            self.assertTrue(os.path.exists(crypto_path))
+            crypto_images_path = crypto_path + "/images"
+            self.assertTrue(os.path.exists(crypto_images_path))
+
+    def download_and_store_images(self):
+        output_1 = merge_dict_ouput
+        for i in range(len(output_1['Name'])):
+            image_name = ((((output_1['TimeStamp'][i]).replace("/","")).replace(" ","_")).replace(":",""))+'_'+ output_1['Name'][i] +".jpg"
+            image_path = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/raw_data/"+output_1['Name'][i]+"/"+"images/"+image_name
+            self.assertTrue(os.path.exists(image_path))
+
+# Test the Scraper
+if __name__ == '__main__':
+    test_suite = unittest.TestLoader().loadTestsFromTestCase(ScraperTestCase)
+    unittest.TextTestRunner().run(test_suite)
+```
+
+In Task 4, The ScraperTestCase() is implemented into a different file named test.py. Following the project structure convention, the project structure is created as follows:
+
+```pyhton
+data-collection-pipeline
+│
+├── scraper
+│   ├── __init__.py
+│   ├── main.py
+│   └── scraper_coinmarket.py
+│
+├── test
+│   ├── __init__.py
+│   └── test.py
+│
+├── raw_data
+│   ├── dictionary
+│   │   └── data.json
+│   ├── Bitcoin
+│   │   └── images
+│   ├── Ethereum
+│   │   └── images
+│   ├── Tether
+│   │   └── images
+│   ├── BNB
+│   │   └── images
+│   └── USD Coin
+│       └── images
+│
+└── README.md
+```
+ - ```scraper```: The folder containing the main script.
+ - ```scraper/__init__.py```: This file tells python that the folder scraper is not simply a directory but a package.
+ - ```scraper/main.py```: This file contains the run_scraper() function, and imports the Scraper() class from the scraper_coinmarket.py in order to be able to run the scraper.
+ - ```test```: The folder containing the test script
+ - ```test/__init__.py```: Again, this file tells python that the folder test is not simply a directory but a package.
+ - ```test/test.py``` : This file executes the run_scraper() function and then runs the tests on all the methods from the Scraper() class.
+ - ```raw_data```: The folder containing the scraped data obtained
+ - ```raw_data/dictionary/data.json```: This file contains the dictionary obtained by the scraper
+ - ```raw_data/Crypto/images```: This directory contains the downloaded image from the src link obtained in the scraper
+
+Finally, in Task 5 all unit tests are checked to pass all the public methods from the scraper.
+
+For each TASK, changes in the code are committed and pushed to the GitHub repo.

@@ -5,16 +5,12 @@ import os
 sys.path.append("..")
 from scraper.main import run_scraper
 
-
-
 # Run the Scraper
 scraper_outputs = run_scraper()
 get_links_ouput = scraper_outputs[0]
 get_data_ouput = scraper_outputs[1]
 get_images_ouput = scraper_outputs[2]
 merge_dict_ouput = scraper_outputs[3]
-
-
 class ScraperTestCase(unittest.TestCase):
 
     # Test Basic methods of the Scraper
