@@ -17,9 +17,21 @@ class Scraper():
 
     def __init__(self):
         self.main_url = 'https://coinmarketcap.com/'
+        # self.options = webdriver.ChromeOptions()
+        # self.options.addArguments("--no-sandbox")
+        # self.options.add_argument('--headless')
+        # self.options.addArguments("start-maximized")
+        # self.options.addArguments("disable-infobars")
+        # self.options.addArguments("--disable-extensions")
+        # self.options.addArguments("--disable-dev-shm-usage")
+        # self.options.add_argument('window-size=800x841')
+        # self.driver = webdriver.Chrome(chrome_options=self.options) 
+        
         self.driver = webdriver.Chrome() 
+
         self.delay = 20
 
+     
 
     def load_and_accept_manual_and_cookies_promts(self):
         '''
@@ -269,14 +281,14 @@ class Scraper():
         '''
 
         dictionary_dir = 'raw_data'
-        parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/"
+        parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/data-collection-pipeline"
         path = os.path.join(parent_dir, dictionary_dir)
         if os.path.exists(path) == False:
             os.mkdir(path)
 
         # Create the dictionary folder within the raw_data folder
         dictionary_dir = 'dictionary'
-        parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/raw_data/"
+        parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/data-collection-pipeline/raw_data/"
         path = os.path.join(parent_dir, dictionary_dir)
         if os.path.exists(path) == False:
             os.mkdir(path)
@@ -303,8 +315,8 @@ class Scraper():
         for name in dictionary['Name']:
             dictionary_dir = f'{name}'
             images_dir = 'images'
-            parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/raw_data/"
-            images_parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/raw_data/"+f"{name}"+"/"
+            parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/data-collection-pipeline/raw_data/"
+            images_parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/data-collection-pipeline/raw_data/"+f"{name}"+"/"
             path = os.path.join(parent_dir, dictionary_dir)
             path_images = os.path.join(images_parent_dir,images_dir)
             if os.path.exists(path) == False:
@@ -332,7 +344,7 @@ class Scraper():
         for i in range(len(dictionary['Images - src'])):
             img_data = requests.get(dictionary['Images - src'][i]).content
             image_name = ((((dictionary['TimeStamp'][i]).replace("/","")).replace(" ","_")).replace(":",""))+'_'+ dictionary['Name'][i] +".jpg"
-            path_name = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/raw_data/"+dictionary['Name'][i]+"/"+"images"
+            path_name = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/data-collection-pipeline/raw_data/"+dictionary['Name'][i]+"/"+"images"
             with open(os.path.join(path_name, image_name), 'wb') as handler:
                 handler.write(img_data)
 
