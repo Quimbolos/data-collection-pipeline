@@ -17,18 +17,15 @@ class Scraper():
 
     def __init__(self):
         self.main_url = 'https://coinmarketcap.com/'
-        # self.options = webdriver.ChromeOptions()
-        # self.options.addArguments("--no-sandbox")
-        # self.options.add_argument('--headless')
-        # self.options.addArguments("start-maximized")
-        # self.options.addArguments("disable-infobars")
-        # self.options.addArguments("--disable-extensions")
-        # self.options.addArguments("--disable-dev-shm-usage")
-        # self.options.add_argument('window-size=800x841')
-        # self.driver = webdriver.Chrome(chrome_options=self.options) 
-        
-        self.driver = webdriver.Chrome() 
-
+        options = webdriver.ChromeOptions()
+        options.add_argument("--no-sandbox")
+        options.add_argument('--headless')
+        options.add_argument("start-maximized")
+        options.add_argument("disable-infobars")
+        options.add_argument("--disable-extensions")
+        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument('window-size=800x841')
+        self.driver = webdriver.Chrome(chrome_options=options) 
         self.delay = 20
 
      
