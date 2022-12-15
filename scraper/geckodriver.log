@@ -1,0 +1,238 @@
+1671119058331	geckodriver	INFO	Listening on 127.0.0.1:52519
+1671119058506	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--no-sandbox" "--headless" "start-maximized" "disable-infobars" "--disable-extensions" "--disable-dev-shm-usage" "window-size=800x841" "user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 " "--remote-debugging-port" "52520" "--remote-allow-hosts" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileFcsdQZ"
+*** You are running in headless mode.
+1671119058991	Marionette	INFO	Marionette enabled
+1671119059033	Marionette	INFO	Listening on port 52538
+Read port: 52538
+WebDriver BiDi listening on ws://127.0.0.1:52520
+1671119059295	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileFcsdQZ/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:52520/devtools/browser/139d6b8c-c791-46d6-ac18-ab44324f7635
+1671119065200	geckodriver	INFO	Listening on 127.0.0.1:52613
+1671119065703	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--no-sandbox" "--headless" "start-maximized" "disable-infobars" "--disable-extensions" "--disable-dev-shm-usage" "window-size=800x841" "user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 " "--remote-debugging-port" "52614" "--remote-allow-hosts" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileGEB9aK"
+*** You are running in headless mode.
+1671119066104	Marionette	INFO	Marionette enabled
+1671119066121	Marionette	INFO	Listening on port 52621
+Read port: 52621
+WebDriver BiDi listening on ws://127.0.0.1:52614
+1671119066379	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileGEB9aK/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:52614/devtools/browser/5a61bfd5-b99f-43a3-b2c8-1af8d1e57f48
+1671119081079	geckodriver	INFO	Listening on 127.0.0.1:52703
+1671119081580	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--no-sandbox" "--headless" "start-maximized" "disable-infobars" "--disable-extensions" "--disable-dev-shm-usage" "window-size=800x841" "user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 " "--remote-debugging-port" "52704" "--remote-allow-hosts" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileuoy1IV"
+*** You are running in headless mode.
+1671119082002	Marionette	INFO	Marionette enabled
+1671119082021	Marionette	INFO	Listening on port 52711
+Read port: 52711
+WebDriver BiDi listening on ws://127.0.0.1:52704
+1671119082288	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileuoy1IV/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:52704/devtools/browser/2985645d-13cf-4e23-a680-f01bfe20aa89
+1671119095180	geckodriver	INFO	Listening on 127.0.0.1:52792
+1671119095686	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--no-sandbox" "--headless" "start-maximized" "disable-infobars" "--disable-extensions" "--disable-dev-shm-usage" "window-size=800x841" "user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 " "--remote-debugging-port" "52793" "--remote-allow-hosts" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileGX4iAR"
+*** You are running in headless mode.
+1671119096142	Marionette	INFO	Marionette enabled
+1671119096162	Marionette	INFO	Listening on port 52800
+Read port: 52800
+WebDriver BiDi listening on ws://127.0.0.1:52793
+1671119096438	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileGX4iAR/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:52793/devtools/browser/dd0c0c32-890a-428a-af8c-aa52deb9f394
+1671119097876	geckodriver	INFO	Listening on 127.0.0.1:52809
+1671119098374	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--no-sandbox" "--headless" "start-maximized" "disable-infobars" "--disable-extensions" "--disable-dev-shm-usage" "window-size=800x841" "user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 " "--remote-debugging-port" "52810" "--remote-allow-hosts" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofilehkOwl5"
+*** You are running in headless mode.
+1671119098806	Marionette	INFO	Marionette enabled
+1671119098826	Marionette	INFO	Listening on port 52827
+Read port: 52827
+WebDriver BiDi listening on ws://127.0.0.1:52810
+1671119099114	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofilehkOwl5/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:52810/devtools/browser/9e395f01-1e13-43f9-8097-68c2e610d8f1
+1671119100588	geckodriver	INFO	Listening on 127.0.0.1:52845
+1671119101091	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--no-sandbox" "--headless" "start-maximized" "disable-infobars" "--disable-extensions" "--disable-dev-shm-usage" "window-size=800x841" "user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 " "--remote-debugging-port" "52846" "--remote-allow-hosts" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileWJ2FFD"
+*** You are running in headless mode.
+1671119101550	Marionette	INFO	Marionette enabled
+1671119101573	Marionette	INFO	Listening on port 52862
+Read port: 52862
+WebDriver BiDi listening on ws://127.0.0.1:52846
+1671119101852	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileWJ2FFD/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:52846/devtools/browser/5feb883a-da31-466a-8784-da1e90bd2e99
+1671119103272	geckodriver	INFO	Listening on 127.0.0.1:52880
+1671119103776	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--no-sandbox" "--headless" "start-maximized" "disable-infobars" "--disable-extensions" "--disable-dev-shm-usage" "window-size=800x841" "user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 " "--remote-debugging-port" "52881" "--remote-allow-hosts" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileKhRnRh"
+*** You are running in headless mode.
+1671119104237	Marionette	INFO	Marionette enabled
+1671119104258	Marionette	INFO	Listening on port 52897
+Read port: 52897
+WebDriver BiDi listening on ws://127.0.0.1:52881
+1671119104526	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileKhRnRh/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:52881/devtools/browser/c0cb92fc-1ce0-458e-9eec-2cf231faa7ca
+1671119106611	geckodriver	INFO	Listening on 127.0.0.1:52923
+1671119107113	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--no-sandbox" "--headless" "start-maximized" "disable-infobars" "--disable-extensions" "--disable-dev-shm-usage" "window-size=800x841" "user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 " "--remote-debugging-port" "52924" "--remote-allow-hosts" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileoD2os0"
+*** You are running in headless mode.
+1671119107568	Marionette	INFO	Marionette enabled
+1671119107591	Marionette	INFO	Listening on port 52936
+Read port: 52936
+WebDriver BiDi listening on ws://127.0.0.1:52924
+1671119107857	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileoD2os0/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:52924/devtools/browser/fbf95d49-9e48-4822-bde5-5c1f97219e46
+1671119109252	Marionette	INFO	Stopped listening on port 52936
+1671122718964	geckodriver	INFO	Listening on 127.0.0.1:54742
+1671122719469	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--no-sandbox" "--headless" "start-maximized" "disable-infobars" "--disable-extensions" "--disable-dev-shm-usage" "window-size=800x841" "user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 " "--remote-debugging-port" "54743" "--remote-allow-hosts" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileyaZAm0"
+*** You are running in headless mode.
+1671122719888	Marionette	INFO	Marionette enabled
+1671122719946	Marionette	INFO	Listening on port 54748
+Read port: 54748
+WebDriver BiDi listening on ws://127.0.0.1:54743
+1671122720165	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileyaZAm0/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:54743/devtools/browser/6443c99d-6638-471b-bd9b-c77c14cbdd3f
+1671122726076	geckodriver	INFO	Listening on 127.0.0.1:54829
+1671122726576	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--no-sandbox" "--headless" "start-maximized" "disable-infobars" "--disable-extensions" "--disable-dev-shm-usage" "window-size=800x841" "user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 " "--remote-debugging-port" "54830" "--remote-allow-hosts" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofilesojK3g"
+*** You are running in headless mode.
+1671122726989	Marionette	INFO	Marionette enabled
+1671122727009	Marionette	INFO	Listening on port 54838
+Read port: 54838
+WebDriver BiDi listening on ws://127.0.0.1:54830
+1671122727289	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofilesojK3g/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:54830/devtools/browser/2e9d3add-eb7f-4f64-95dd-e7e95b8c2837
+1671122743305	geckodriver	INFO	Listening on 127.0.0.1:54917
+1671122743808	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--no-sandbox" "--headless" "start-maximized" "disable-infobars" "--disable-extensions" "--disable-dev-shm-usage" "window-size=800x841" "user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 " "--remote-debugging-port" "54918" "--remote-allow-hosts" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileI2zBMj"
+*** You are running in headless mode.
+1671122744238	Marionette	INFO	Marionette enabled
+1671122744259	Marionette	INFO	Listening on port 54923
+Read port: 54923
+WebDriver BiDi listening on ws://127.0.0.1:54918
+1671122744531	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileI2zBMj/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:54918/devtools/browser/fd5380c3-9b0f-46a7-9a72-8e407ba5d45d
+1671122759285	geckodriver	INFO	Listening on 127.0.0.1:55011
+1671122759788	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--no-sandbox" "--headless" "start-maximized" "disable-infobars" "--disable-extensions" "--disable-dev-shm-usage" "window-size=800x841" "user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 " "--remote-debugging-port" "55012" "--remote-allow-hosts" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileMsRqXV"
+*** You are running in headless mode.
+1671122760247	Marionette	INFO	Marionette enabled
+1671122760269	Marionette	INFO	Listening on port 55017
+Read port: 55017
+WebDriver BiDi listening on ws://127.0.0.1:55012
+1671122760557	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileMsRqXV/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:55012/devtools/browser/90813846-bfe9-43af-8de4-ca2577cb324c
+1671122762214	geckodriver	INFO	Listening on 127.0.0.1:55028
+1671122762716	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--no-sandbox" "--headless" "start-maximized" "disable-infobars" "--disable-extensions" "--disable-dev-shm-usage" "window-size=800x841" "user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 " "--remote-debugging-port" "55029" "--remote-allow-hosts" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileGUimN5"
+*** You are running in headless mode.
+1671122763161	Marionette	INFO	Marionette enabled
+1671122763180	Marionette	INFO	Listening on port 55048
+Read port: 55048
+WebDriver BiDi listening on ws://127.0.0.1:55029
+1671122763463	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileGUimN5/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:55029/devtools/browser/9c6657ac-215f-4ad5-8928-d24449d03235
+1671122765064	geckodriver	INFO	Listening on 127.0.0.1:55068
+1671122765566	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--no-sandbox" "--headless" "start-maximized" "disable-infobars" "--disable-extensions" "--disable-dev-shm-usage" "window-size=800x841" "user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 " "--remote-debugging-port" "55069" "--remote-allow-hosts" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofilex5aUXh"
+*** You are running in headless mode.
+1671122766029	Marionette	INFO	Marionette enabled
+1671122766052	Marionette	INFO	Listening on port 55085
+Read port: 55085
+WebDriver BiDi listening on ws://127.0.0.1:55069
+1671122766339	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofilex5aUXh/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:55069/devtools/browser/2dc7015a-31c9-4f22-bd12-431d9b42b6c8
+1671122767902	geckodriver	INFO	Listening on 127.0.0.1:55103
+1671122768403	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--no-sandbox" "--headless" "start-maximized" "disable-infobars" "--disable-extensions" "--disable-dev-shm-usage" "window-size=800x841" "user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 " "--remote-debugging-port" "55104" "--remote-allow-hosts" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileTEqlAO"
+*** You are running in headless mode.
+1671122768881	Marionette	INFO	Marionette enabled
+1671122768901	Marionette	INFO	Listening on port 55120
+Read port: 55120
+WebDriver BiDi listening on ws://127.0.0.1:55104
+1671122769206	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileTEqlAO/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:55104/devtools/browser/0fb6aa78-c382-405e-8f4a-5c0b75d4d545
+1671122771167	geckodriver	INFO	Listening on 127.0.0.1:55144
+1671122771673	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--no-sandbox" "--headless" "start-maximized" "disable-infobars" "--disable-extensions" "--disable-dev-shm-usage" "window-size=800x841" "user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 " "--remote-debugging-port" "55145" "--remote-allow-hosts" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileoMQWFx"
+*** You are running in headless mode.
+1671122772147	Marionette	INFO	Marionette enabled
+1671122772168	Marionette	INFO	Listening on port 55160
+Read port: 55160
+WebDriver BiDi listening on ws://127.0.0.1:55145
+1671122772467	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileoMQWFx/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:55145/devtools/browser/9f312058-8b05-4113-b802-2d7a0a96d263
+1671122774034	Marionette	INFO	Stopped listening on port 55160
+console.error: services.settings: 
+  main/query-stripping Signature failed  TypeError: NetworkError: Network request failed
+1671123456467	geckodriver	INFO	Listening on 127.0.0.1:55618
+1671123456969	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--no-sandbox" "--headless" "start-maximized" "disable-infobars" "--disable-extensions" "--disable-dev-shm-usage" "window-size=800x841" "user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 " "--remote-debugging-port" "55619" "--remote-allow-hosts" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileCh7RuQ"
+*** You are running in headless mode.
+1671123457510	Marionette	INFO	Marionette enabled
+1671123457577	Marionette	INFO	Listening on port 55624
+Read port: 55624
+WebDriver BiDi listening on ws://127.0.0.1:55619
+1671123457824	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileCh7RuQ/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:55619/devtools/browser/48fb322f-cbeb-4e2a-af82-1c2fe95b475f
+1671123464562	geckodriver	INFO	Listening on 127.0.0.1:55702
+1671123465063	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--no-sandbox" "--headless" "start-maximized" "disable-infobars" "--disable-extensions" "--disable-dev-shm-usage" "window-size=800x841" "user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 " "--remote-debugging-port" "55703" "--remote-allow-hosts" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileajorD3"
+*** You are running in headless mode.
+1671123465595	Marionette	INFO	Marionette enabled
+1671123465663	Marionette	INFO	Listening on port 55715
+Read port: 55715
+WebDriver BiDi listening on ws://127.0.0.1:55703
+1671123465954	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileajorD3/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:55703/devtools/browser/3e61ae4e-086a-4945-9d67-e4fb01cd02aa
+1671123483836	geckodriver	INFO	Listening on 127.0.0.1:55791
+1671123484337	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--no-sandbox" "--headless" "start-maximized" "disable-infobars" "--disable-extensions" "--disable-dev-shm-usage" "window-size=800x841" "user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 " "--remote-debugging-port" "55792" "--remote-allow-hosts" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileZ7pURQ"
+*** You are running in headless mode.
+1671123484839	Marionette	INFO	Marionette enabled
+1671123484913	Marionette	INFO	Listening on port 55797
+Read port: 55797
+WebDriver BiDi listening on ws://127.0.0.1:55792
+1671123485191	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileZ7pURQ/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:55792/devtools/browser/8deeb8af-18e0-4503-b573-33b053f48dab
+JavaScript error: , line 0: uncaught exception: Object
+JavaScript error: , line 0: uncaught exception: Object
+JavaScript error: https://s2.coinmarketcap.com/_next/static/chunks/8307.f78ed2ff331473dd.js, line 1: Error: NetworkError when attempting to fetch resource.
+1671123499086	geckodriver	INFO	Listening on 127.0.0.1:55883
+1671123499587	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--no-sandbox" "--headless" "start-maximized" "disable-infobars" "--disable-extensions" "--disable-dev-shm-usage" "window-size=800x841" "user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 " "--remote-debugging-port" "55884" "--remote-allow-hosts" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileLQ2N0R"
+*** You are running in headless mode.
+1671123500136	Marionette	INFO	Marionette enabled
+1671123500174	Marionette	INFO	Listening on port 55889
+Read port: 55889
+WebDriver BiDi listening on ws://127.0.0.1:55884
+1671123500667	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileLQ2N0R/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:55884/devtools/browser/872c8890-bb62-4d44-a428-462890e623ad
+1671123502496	geckodriver	INFO	Listening on 127.0.0.1:55903
+1671123502999	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--no-sandbox" "--headless" "start-maximized" "disable-infobars" "--disable-extensions" "--disable-dev-shm-usage" "window-size=800x841" "user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 " "--remote-debugging-port" "55904" "--remote-allow-hosts" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileLXVSLo"
+*** You are running in headless mode.
+1671123503502	Marionette	INFO	Marionette enabled
+1671123503526	Marionette	INFO	Listening on port 55922
+Read port: 55922
+WebDriver BiDi listening on ws://127.0.0.1:55904
+1671123503892	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/9j/r5th0fxd26341bbn6qkwvlww0000gn/T/rust_mozprofileLXVSLo/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:55904/devtools/browser/33660f2e-7565-4a6d-bb58-bee7dc40df0f
