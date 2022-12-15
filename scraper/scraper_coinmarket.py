@@ -285,7 +285,7 @@ class Scraper():
             os.mkdir(path)
 
         # Create the dictionary folder within the raw_data folder
-        dictionary_dir = 'raw-data/dictionary'
+        dictionary_dir = 'raw_data/dictionary'
         path = os.path.join(os.path.dirname(os.getcwd()), dictionary_dir)
         if os.path.exists(path) == False:
             os.mkdir(path)
