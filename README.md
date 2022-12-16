@@ -4,16 +4,19 @@
 
 ## Language and tools
 
-<p align="left"> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> <a href="https://www.selenium.dev" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/detain/svg-logos/780f25886640cef088af994181646db2f6b1a3f8/svg/selenium-logo.svg" alt="selenium" width="40" height="40"/> </a> <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> </p>
+<p align="left"> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> <a href="https://www.selenium.dev" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/detain/svg-logos/780f25886640cef088af994181646db2f6b1a3f8/svg/selenium-logo.svg" alt="selenium" width="40" height="40"/> </a> <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> 
+</a> <a href="https://www.docker.com/company/newsroom/media-resources/" target="_blank" rel="noreferrer"> <img src="https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png" alt="docker" width="45" height="40"/> </a></p>
 
 ## Milestone 1: Set up the environment
 
-Create a new GitHub repo to upload the code and allow version control throughout the project.
+> Create a new GitHub repo to upload the code and allow version control throughout the project.
 
 
 ## Milestone 2: Decide which website you are going to collect data from
 
-A website is chosen based on the data you are interested in to collect and build a dataset from. In this case, the selected website is [CoinMarket](https://coinmarketcap.com/). This financial webpage contains data from all the current cryptocurrencies, and scraping data from it could mainly allow for the following:
+> A website is chosen based on the data you are interested in to collect and build a dataset from. 
+
+In this case, the selected website is [CoinMarket](https://coinmarketcap.com/). This financial webpage contains data from all the current cryptocurrencies, and scraping data from it could mainly allow for the following:
 
 - Overall Monitoring of Cryptocurrency panorama.
 - Price Monitoring of Cryptocurrency.
@@ -24,7 +27,9 @@ A website is chosen based on the data you are interested in to collect and build
 
 ## Milestone 3: Prototype finding the individual page for each entry
 
-The aim is to find the links within the main page to the many pages containing the data you want to collect. A Scraper class is created containing all the methods used to scrape the data. Using Selenium, three methods, aside from the constructor, are defined:
+> The aim is to find the links within the main page to the many pages containing the data you want to collect. 
+
+A Scraper class is created containing all the methods used to scrape the data. Using Selenium, three methods, aside from the constructor, are defined:
 
  - The load_and_accept_manual_and_cookies_promts() method waits for the manual and cookies prompts to appear and then accepts them.
 
@@ -39,7 +44,6 @@ The aim is to find the links within the main page to the many pages containing t
 Finally, the class is initialised within an  if __name__ == "__main__" block, so that it only runs if this file is run directly rather than on any import. For each TASK, changes in the code are committed and pushed to the GitHub repo.
 
 ```python
-
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -142,7 +146,9 @@ if __name__ == '__main__':
 
 ## Milestone 4: Retrieve data from details page
 
-All the data for each cryptocurrency is obtained from its corresponding webpage. Within the Scraper class, in Task 1, two methods are defined:
+> All the data for each cryptocurrency is obtained from its corresponding webpage. 
+
+Within the Scraper class, in Task 1, two methods are defined:
 
  - The get_data() method navigates to the price statistics container, scrapes all the statistics, and stores them in the data_dict dictionary.
 
@@ -171,304 +177,203 @@ In task 4, all the images are to be downloaded and stored in their corresponding
 For each TASK, changes in the code are committed and pushed to the GitHub repo.
 
 ```python
-
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
-from selenium.webdriver.common.keys import Keys
-import time
-import re
-import datetime
-import os
-import json
-import requests
-
-
-class Scraper():
-
-    def __init__(self, url):
-        self.main_url = url
-        self.driver = webdriver.Chrome() 
-        self.delay = 20
-
-
-    def load_and_accept_manual_and_cookies_promts(self):
-        '''
-        Open Main URL (CoinMarket) and accept the manual and cookies prompt
-        
-        '''
-
-        URL = self.main_url
-        self.driver.get(URL)
-        try:
-
-            # Click Buttons from Prompts
-
-            manual_button1 = WebDriverWait(self.driver, self.delay).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div[4]/button')))
-            manual_button1.click()
-           
-            manual_button2 = WebDriverWait(self.driver, self.delay).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div[4]/button')))
-            manual_button2.click()
-
-            cookies_button = WebDriverWait(self.driver, self.delay).until(EC.presence_of_element_located((By.XPATH, '//*[@id="cmc-cookie-policy-banner"]/div[2]')))
-            cookies_button.click()
-            
-            time.sleep(1)
-
-        except TimeoutException:
-            print("Loading took too much time!")
-
-        return self.driver 
-
-
-    def scroll_down(self):
-        '''
-        Scroll down Main URL (CoinMarket) 
-        
-        '''
-
-        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        print("Scroll down executed!")
-
-        return self.driver 
-
-
-    def get_links(self):
-        '''
-        Returns a list with all the links in the current page
-        Parameters
-        ----------
-        driver: webdriver.Chrome
-            The driver that contains information about the current page
-        
-        Returns
-        -------
-        link_list: list
-            A list with all the links in the page
-        '''
-
-        self.driver = self.load_and_accept_manual_and_cookies_promts()
-
-        prop_container = self.driver.find_element(by=By.XPATH, value='//*[@id="__next"]/div/div[1]/div[2]/div/div[1]/div[4]/table')
-        prop_container2 = prop_container.find_element(by=By.XPATH, value='./tbody')
-        prop_list = prop_container2.find_elements(by=By.XPATH, value='./tr')
-        
-        link_list = []
-
-        for crypto in prop_list:
-            a_tag = crypto.find_element(by=By.TAG_NAME, value='a')
-            link = a_tag.get_attribute('href')
-            link_list.append(link)
-
-        return link_list
-
-
-    def get_data(self, links):
-        '''
-        Returns a dictionary with all the data of interest from the links from get_links()
-        Parameters
-        ----------
-        driver: webdriver.Chrome
-            The driver that contains information about the current page
-        
-        Returns
-        -------
-        data: dict
-            A dictionary with all the data of interest from the links
-        '''
- 
-        # Extract all the links
-        link_list = links
-
-        # Variables to extract:
-        name = []
-        price = []
-        price_change_24_hours = []
-        low_price_24_hours = []
-        high_price_24_hours = []
-        trading_volume_24_hours = []
-        volume_market_cap = []
-        market_dominance = []
-        market_rank = []
-        timestamp = []
-
-        # Iterate through the list, and for each iteration, visit the corresponding URL
-        for i in range(5): # The first 5 pages only
-            # Load url
-            self.driver.get(link_list[i])
-
-            # click prompt button if it appears
-            # if i == 0:
-            #     prompt_button1 = WebDriverWait(self.driver, self.delay).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div/div/div/div/button[2]')))
-            #     prompt_button1.click()
-
-            # Wait Until Container with data appears
-            WebDriverWait(self.driver, self.delay).until(EC.presence_of_element_located((By.XPATH, '//div[@class="sc-aef7b723-0 jfPVkR container"]')))
-        
-            # Extract the information of the link
-            name_container = self.driver.find_element(by=By.XPATH, value='//div[@class="sc-aef7b723-0 jfPVkR container"]')
-            name.append(name_container.find_element(by=By.XPATH, value='//h2/span').text)
-
-            price_statistics_container = self.driver.find_element(by=By.XPATH, value='//div[@class="sc-aef7b723-0 sc-7bd0ce10-0 dkDCAO"]')
-            tbody_tag = price_statistics_container.find_element(by=By.XPATH, value='//tbody')
-            tr_tag = tbody_tag.find_elements(by=By.XPATH, value='.//td')
-
-            price.append((tr_tag[0].get_attribute('innerHTML'))[1:10])
-            price_change_24_hours.append(((tr_tag[1].find_element(by=By.XPATH, value='.//span/span').get_attribute('innerHTML'))[0]+(tr_tag[1].find_element(by=By.XPATH, value='.//span/span').get_attribute('innerHTML'))[10:16]))
-            low_price_24_hours.append(re.sub('[^a-zA-Z0-9\n\.]', '',(tr_tag[2].find_element(by=By.XPATH, value='.//div').get_attribute('innerHTML'))[1:10]))
-            high_price_24_hours.append((tr_tag[2].find_element(by=By.XPATH, value='.//div[2]').get_attribute('innerHTML'))[1:10])
-            trading_volume_24_hours.append((tr_tag[3].find_element(by=By.XPATH, value='.//span').get_attribute('innerHTML'))[1:-1])
-            volume_market_cap.append(tr_tag[4].get_attribute('innerHTML'))
-            market_dominance.append(re.sub('[^a-zA-Z0-9\n\.]', '',(tr_tag[5].find_element(by=By.XPATH, value='.//span').get_attribute('innerHTML'))[0:5]))
-            market_rank.append((tr_tag[6].get_attribute('innerHTML'))[1:4])
-            timestamp.append(datetime.datetime.fromtimestamp(time.time()).strftime("%m/%d/%Y %H:%M:%S"))
-            
-            # Sleep
-            time.sleep(1)
-
-
-        data_dict = {
-
-            'Name' : name,
-            'Price ($)' : price,
-            'Price Change 24h ($)' : price_change_24_hours,
-            'Lowest Price 24h ($)' : low_price_24_hours,
-            'Highest Price 24h ($)' : high_price_24_hours,
-            'Trading Volume 24h ($)' : trading_volume_24_hours,
-            'Volume / Market Cap' : volume_market_cap,
-            'Market Dominance' : market_dominance,
-            'Market Rank' : market_rank,
-            'TimeStamp' : timestamp
-
-        }
-
-        return data_dict
-
-
-    def get_images(self, links):
-
-        # Extract all the links
-        link_list = links
-
-        # Allocate space for the images
-        images = []
-
-        # Iterate through the link list, and for each iteration, visit the corresponding URL
-        for i in range(5): # The first 5 pages only
-            # Load url
-            self.driver.get(link_list[i])
-
-            # Wait Until Container with image appears
-            WebDriverWait(self.driver, self.delay).until(EC.presence_of_element_located((By.XPATH, '//div[@class="sc-aef7b723-0 jPJwrb nameHeader"]')))
-            image_container  = self.driver.find_element(by=By.XPATH, value='//div[@class="sc-aef7b723-0 jPJwrb nameHeader"]')
-            images.append(image_container.find_element(by=By.XPATH, value='.//img').get_attribute('src'))
-
-            # Sleep
-            time.sleep(1)
-
-        images_dict = {
-
-            'Images - src' : images
-        }
-
-        return images_dict
-
-
-    def merge_dict(self, data, images):
-
-        dictionary = {}
-        dictionary.update(images)
-        dictionary.update(data)
-
-        return dictionary
-
-
-    def create_raw_data_folder(self, dictionary):
-
-        dictionary_dir = 'raw_data'
-        parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/"
-        path = os.path.join(parent_dir, dictionary_dir)
-        if os.path.exists(path) == False:
-            os.mkdir(path)
-
-        # Create the dictionary folder within the raw_data folder
-        dictionary_dir = 'dictionary'
-        parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/raw_data/"
-        path = os.path.join(parent_dir, dictionary_dir)
-        if os.path.exists(path) == False:
-            os.mkdir(path)
-
-         # Save the dictionary in the dictionary folder
-        with open(os.path.join(path, 'data.json'), 'w') as fp:
-            json.dump(dictionary, fp)
-
-
-    def create_crypto_folders(self, dictionary):
-
-        # Create a folder for each crypto
-        for id in dictionary['Name']:
-            dictionary_dir = f'{id}'
-            images_dir = 'images'
-            parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/raw_data/"
-            images_parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/raw_data/"+f"{id}"+"/"
-            path = os.path.join(parent_dir, dictionary_dir)
-            path_images = os.path.join(images_parent_dir,images_dir)
-            if os.path.exists(path) == False:
-                os.mkdir(path)
-            if os.path.exists(path_images) == False:
-                os.mkdir(path_images)     
-
-
-    def download_and_store_images(self, dictionary):
-
-        for i in range(len(dictionary['Images - src'])):
-            img_data = requests.get(dictionary['Images - src'][i]).content
-            image_name = ((((dictionary['TimeStamp'][i]).replace("/","")).replace(" ","_")).replace(":",""))+'_'+ dictionary['Name'][i] +".jpg"
-            path_name = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/raw_data/"+dictionary['Name'][i]+"/"+"images"
-            with open(os.path.join(path_name, image_name), 'wb') as handler:
-                handler.write(img_data)
-
-
-    def run_scraper(self):
-
-
-        # Get the links to scrape data from
-        link_list = self.get_links()
-
-        # Scrape the Price statistics for each cryprocurrency
-        data_dict = self.get_data(link_list)
-
-        # Scrape the Image/Logo for each cryprocurrency
-        images_dict = self.get_images(link_list)
-
-        # Merge both data and image dictionaries
-        dictionary = self.merge_dict(data_dict, images_dict)
-
-        # Create the raw_data folder, 
-        # Create the dictionary folder within the raw_data folder 
-        # Save the dictionary in the dictionary folder
-        self.create_raw_data_folder(dictionary)
-
-        # Create a folder for each cryptocurrency within the raw_data folder
-        self.create_crypto_folders(dictionary)
-
-        # Save the downloaded images in each crypto folder
-        self.download_and_store_images(dictionary)
-
-        # self.scroll_down()
-
-        # Close the browser when you finish
-        self.driver.quit() 
-
-        return dictionary
+def get_data(self, links):
+    '''
+    Returns a dictionary with all the data of interest from the links from get_links()
+    Parameters
+    ----------
+    driver: webdriver.Chrome
+        The driver that contains information about the current page
     
+    Returns
+    -------
+    data: dict
+        A dictionary with all the data of interest from the links
+    '''
 
-if __name__ == '__main__':
-    url = 'https://coinmarketcap.com/'
-    game = Scraper(url)
-    dictionary = game.run_scraper()
+    # Extract all the links
+    link_list = links
+
+    # Variables to extract:
+    name = []
+    price = []
+    price_change_24_hours = []
+    low_price_24_hours = []
+    high_price_24_hours = []
+    trading_volume_24_hours = []
+    volume_market_cap = []
+    market_dominance = []
+    market_rank = []
+    timestamp = []
+
+    # Iterate through the list, and for each iteration, visit the corresponding URL
+    for i in range(5): # The first 5 pages only
+        # Load url
+        self.driver.get(link_list[i])
+
+        # click prompt button if it appears
+        # if i == 0:
+        #     prompt_button1 = WebDriverWait(self.driver, self.delay).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div/div/div/div/button[2]')))
+        #     prompt_button1.click()
+
+        # Wait Until Container with data appears
+        WebDriverWait(self.driver, self.delay).until(EC.presence_of_element_located((By.XPATH, '//div[@class="sc-aef7b723-0 jfPVkR container"]')))
+    
+        # Extract the information of the link
+        name_container = self.driver.find_element(by=By.XPATH, value='//div[@class="sc-aef7b723-0 jfPVkR container"]')
+        name.append(name_container.find_element(by=By.XPATH, value='//h2/span').text)
+
+        price_statistics_container = self.driver.find_element(by=By.XPATH, value='//div[@class="sc-aef7b723-0 sc-7bd0ce10-0 dkDCAO"]')
+        tbody_tag = price_statistics_container.find_element(by=By.XPATH, value='//tbody')
+        tr_tag = tbody_tag.find_elements(by=By.XPATH, value='.//td')
+
+        price.append((tr_tag[0].get_attribute('innerHTML'))[1:10])
+        price_change_24_hours.append(((tr_tag[1].find_element(by=By.XPATH, value='.//span/span').get_attribute('innerHTML'))[0]+(tr_tag[1].find_element(by=By.XPATH, value='.//span/span').get_attribute('innerHTML'))[10:16]))
+        low_price_24_hours.append(re.sub('[^a-zA-Z0-9\n\.]', '',(tr_tag[2].find_element(by=By.XPATH, value='.//div').get_attribute('innerHTML'))[1:10]))
+        high_price_24_hours.append((tr_tag[2].find_element(by=By.XPATH, value='.//div[2]').get_attribute('innerHTML'))[1:10])
+        trading_volume_24_hours.append((tr_tag[3].find_element(by=By.XPATH, value='.//span').get_attribute('innerHTML'))[1:-1])
+        volume_market_cap.append(tr_tag[4].get_attribute('innerHTML'))
+        market_dominance.append(re.sub('[^a-zA-Z0-9\n\.]', '',(tr_tag[5].find_element(by=By.XPATH, value='.//span').get_attribute('innerHTML'))[0:5]))
+        market_rank.append((tr_tag[6].get_attribute('innerHTML'))[1:4])
+        timestamp.append(datetime.datetime.fromtimestamp(time.time()).strftime("%m/%d/%Y %H:%M:%S"))
+        
+        # Sleep
+        time.sleep(1)
+
+
+    data_dict = {
+
+        'Name' : name,
+        'Price ($)' : price,
+        'Price Change 24h ($)' : price_change_24_hours,
+        'Lowest Price 24h ($)' : low_price_24_hours,
+        'Highest Price 24h ($)' : high_price_24_hours,
+        'Trading Volume 24h ($)' : trading_volume_24_hours,
+        'Volume / Market Cap' : volume_market_cap,
+        'Market Dominance' : market_dominance,
+        'Market Rank' : market_rank,
+        'TimeStamp' : timestamp
+
+    }
+
+    return data_dict
+
+
+def get_images(self, links):
+
+    # Extract all the links
+    link_list = links
+
+    # Allocate space for the images
+    images = []
+
+    # Iterate through the link list, and for each iteration, visit the corresponding URL
+    for i in range(5): # The first 5 pages only
+        # Load url
+        self.driver.get(link_list[i])
+
+        # Wait Until Container with image appears
+        WebDriverWait(self.driver, self.delay).until(EC.presence_of_element_located((By.XPATH, '//div[@class="sc-aef7b723-0 jPJwrb nameHeader"]')))
+        image_container  = self.driver.find_element(by=By.XPATH, value='//div[@class="sc-aef7b723-0 jPJwrb nameHeader"]')
+        images.append(image_container.find_element(by=By.XPATH, value='.//img').get_attribute('src'))
+
+        # Sleep
+        time.sleep(1)
+
+    images_dict = {
+
+        'Images - src' : images
+    }
+
+    return images_dict
+
+
+def merge_dict(self, data, images):
+
+    dictionary = {}
+    dictionary.update(images)
+    dictionary.update(data)
+
+    return dictionary
+
+
+def create_raw_data_folder(self, dictionary):
+
+    dictionary_dir = 'raw_data'
+    parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/"
+    path = os.path.join(parent_dir, dictionary_dir)
+    if os.path.exists(path) == False:
+        os.mkdir(path)
+
+    # Create the dictionary folder within the raw_data folder
+    dictionary_dir = 'dictionary'
+    parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/raw_data/"
+    path = os.path.join(parent_dir, dictionary_dir)
+    if os.path.exists(path) == False:
+        os.mkdir(path)
+
+        # Save the dictionary in the dictionary folder
+    with open(os.path.join(path, 'data.json'), 'w') as fp:
+        json.dump(dictionary, fp)
+
+
+def create_crypto_folders(self, dictionary):
+
+    # Create a folder for each crypto
+    for id in dictionary['Name']:
+        dictionary_dir = f'{id}'
+        images_dir = 'images'
+        parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/raw_data/"
+        images_parent_dir = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/raw_data/"+f"{id}"+"/"
+        path = os.path.join(parent_dir, dictionary_dir)
+        path_images = os.path.join(images_parent_dir,images_dir)
+        if os.path.exists(path) == False:
+            os.mkdir(path)
+        if os.path.exists(path_images) == False:
+            os.mkdir(path_images)     
+
+
+def download_and_store_images(self, dictionary):
+
+    for i in range(len(dictionary['Images - src'])):
+        img_data = requests.get(dictionary['Images - src'][i]).content
+        image_name = ((((dictionary['TimeStamp'][i]).replace("/","")).replace(" ","_")).replace(":",""))+'_'+ dictionary['Name'][i] +".jpg"
+        path_name = "/Users/joaquimbolosfernandez/Desktop/AICore/Data Collection Project/raw_data/"+dictionary['Name'][i]+"/"+"images"
+        with open(os.path.join(path_name, image_name), 'wb') as handler:
+            handler.write(img_data)
+
+
+def run_scraper(self):
+
+
+    # Get the links to scrape data from
+    link_list = self.get_links()
+
+    # Scrape the Price statistics for each cryprocurrency
+    data_dict = self.get_data(link_list)
+
+    # Scrape the Image/Logo for each cryprocurrency
+    images_dict = self.get_images(link_list)
+
+    # Merge both data and image dictionaries
+    dictionary = self.merge_dict(data_dict, images_dict)
+
+    # Create the raw_data folder, 
+    # Create the dictionary folder within the raw_data folder 
+    # Save the dictionary in the dictionary folder
+    self.create_raw_data_folder(dictionary)
+
+    # Create a folder for each cryptocurrency within the raw_data folder
+    self.create_crypto_folders(dictionary)
+
+    # Save the downloaded images in each crypto folder
+    self.download_and_store_images(dictionary)
+
+    # self.scroll_down()
+
+    # Close the browser when you finish
+    self.driver.quit() 
+    
 
 
 ```
@@ -476,14 +381,13 @@ if __name__ == '__main__':
 
 ## Milestone 5: Documentation and testing
 
-Using docstrings and unittest documentation and testing are included in the project. 
+> Using docstrings and unittest documentation and testing are included in the project. 
 
 In Task 1, the current code is optimised and refactored. All the classes, methods and variables are to be named appropriately using conventions. The main goal is to have clean code and be as concise as possible.
 
 In Task 2, docstrings are included in all the functions used in the project. The format chosen follows the NumPy convention.
 
 ```python
-
 def merge_dict(self, data, images):
         '''
         Returns a dictionary with all the images from the links from get_links()
@@ -512,7 +416,6 @@ def merge_dict(self, data, images):
 In Task 3, using unittest, a ScraperTestCase() class is created to test all the methods from the Scraper() class. The implemented tests check trivial aspects of the methods, such as the output type, length, and overall, whether the output is what we expect. 
 
 ```python
-
 import unittest
 import sys
 import os
@@ -636,4 +539,128 @@ data-collection-pipeline
 
 Finally, in Task 5 all unit tests are checked to pass all the public methods from the scraper.
 
-For each TASK, changes in the code are committed and pushed to the GitHub repo.
+For each TASK, changes in the project are committed and pushed to the GitHub repo.
+
+## Milestone 6: Containerising the scraper
+
+> In order to run the system on the cloud, the code is put together in a package within a self-contained unit - a docker container.
+
+In Task 1, as previously done, the current code is optimised and refactored. All the classes, methods and variables will be named appropriately using conventions. The main goal is to have clean code and be as concise as possible.
+
+In Task 2, after refactoring the code, all the tests are run to ensure everything is working as it should.
+
+To run the scraper within the Docker container, it needs to be able to run in headless mode - without the Graphical User Interface (GUI)-. Consequently, in Task 3, arguments are added to the webdrivers options so that the scraper can run in headless mode.
+
+```python
+def __init__(self):
+        self.main_url = 'https://coinmarketcap.com/'
+        options = webdriver.FirefoxOptions()
+        options.add_argument("--no-sandbox")
+        options.add_argument('--headless')
+        options.add_argument("start-maximized")
+        options.add_argument("disable-infobars")
+        options.add_argument("--disable-extensions")
+        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument('window-size=800x841')
+        options.add_argument('user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 ')
+        self.driver = webdriver.Firefox(options=options) 
+        self.delay = 20
+```
+
+In Task 4, a Dockerfile is created to build the scraper image locally. 
+
+```Dockerfile
+FROM python:3.9
+
+
+# Update the system and install firefox
+RUN apt-get update 
+RUN apt -y upgrade 
+RUN apt-get install -y firefox-esr
+
+# get the latest release version of firefox 
+RUN latest_release=$(curl -sS https://api.github.com/repos/mozilla/geckodriver/releases/latest \
+    | grep tag_name | sed -E 's/.*"([^"]+)".*/\1/') && \
+    # Download the latest release of geckodriver
+    wget https://github.com/mozilla/geckodriver/releases/download/$latest_release/geckodriver-$latest_release-linux32.tar.gz \
+    # extract the geckodriver
+    && tar -xvzf geckodriver* \
+    # add executable permissions to the driver
+    && chmod +x geckodriver \
+    # Move gecko driver in the system path
+    && mv geckodriver /usr/local/bin
+
+COPY . . 
+
+RUN pip install -r requirements.txt
+
+CMD ["python", "scraper/main.py"]
+```
+
+The ```FROM``` command starts the build stage of the image. It also specifies the base image (like ```pyhton```, ```Ubuntu```, ```node```, ```conda```), which defines what one can do in the image.
+
+The first set of ```RUN``` commands run the specified commands during the building stage (e.g. installing some packages). In this case, the system is updated, and the latest version of firefox is installed)
+
+The ```COPY``` command allows users to specify which file(s) or directories should be copied into the image from the host system. In this case, ```. .``` is used, which copies all the files from our current directory to the current working directory inside the docker container.
+
+The last ```RUN``` command installs all the dependencies into the container's working directory. The ```requirements.txt``` file is generated using the ```pipreqs``` library.
+
+Finally, the ```CMD``` command runs the ```main.py``` script within the container's working directory.
+
+The image is built using the following command line:
+```
+docker build -t datacollectionpipeline --progress=plain --no-cache . 
+````
+In order to run the image, the following command line is used:
+
+```
+docker run -it datacollectionpipeline 
+```
+In Task 5, the Docker image is pushed to Docker Hub after making sure the containers can run locally.
+
+For each TASK, changes in the project are committed and pushed to the GitHub repo.
+
+## Milestone 7: Set up a CI/CD pipeline for your Docker image
+
+> A CI/CD pipeline is created to build and deploy the Docker image to DockerHub
+
+In task 1, the aim is to set up the relevant GitHub secrets that contain the credentials required to push the scraper's image to the Dockerhub account.
+
+In Task 2, a GitHub action is created so is triggered on a ```push``` to the ```main``` branch of your repository. The action builds the Docker image and then pushes it to the Dockerhub account.
+
+```yml
+name: ci
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      -
+        name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/clockbox:latest
+        
+```
+
+For each TASK, changes in the project are committed and pushed to the GitHub repo.
