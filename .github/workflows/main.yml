@@ -6,7 +6,7 @@ on:
       - "main"
 
 jobs:
-  build:
+  build-and-push:
     runs-on: ubuntu-latest
     steps:
       -
@@ -29,3 +29,13 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/clockbox:latest
+      - 
+        name: Build the Docker Image
+        run: docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/datacollectionpipeline 
+      - 
+        name: Push the Docker Image
+        run: docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/datacollectionpipeline 
+          
+          
+
+  
